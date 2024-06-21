@@ -145,7 +145,6 @@ int main()
 
         float angle = (GLfloat)glfwGetTime() * 50.0f;
 
-        // Configurações para o primeiro cubo
         glm::mat4 model1 = glm::mat4(1.0f);
         model1 = glm::translate(model1, position);
         model1 = glm::scale(model1, scale);
@@ -165,15 +164,12 @@ int main()
         GLint modelLoc = glGetUniformLocation(shaderID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model1));
 
-        // Desenha o primeiro cubo
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        // Configurações para o segundo cubo
-        glm::mat4 model2 = glm::translate(model1, glm::vec3(1.5f, 0.0f, 0.0f)); // Desloca o segundo cubo
+        glm::mat4 model2 = glm::translate(model1, glm::vec3(2.0f, 0.0f, 0.0f)); 
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
 
-        // Desenha o segundo cubo
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         glBindVertexArray(0);
