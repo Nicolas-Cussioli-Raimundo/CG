@@ -131,13 +131,13 @@ int main()
         if (translateYD)
             position.y -= 0.05f;
         if (translateZ)
-            position.z += 0.05f;
+            position.z += 0.09f;
         if (translateZD)
-            position.z -= 0.05f;
+            position.z -= 0.09f;
         if (rescalingP)
             scale *= 1.2f;
         if (rescalingM)
-            scale *= 1.5f;
+            scale *= 0.9f;
 
         // Limpa o buffer de cor
         glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // cor de fundo
@@ -238,14 +238,14 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     if (key == GLFW_KEY_D && action == GLFW_RELEASE)
         translateX = false;
 
-    if (key == GLFW_KEY_I && (action == GLFW_PRESS || action == GLFW_REPEAT))
+    if (key == GLFW_KEY_J && (action == GLFW_PRESS || action == GLFW_REPEAT))
         translateZ = true;
-    if (key == GLFW_KEY_I && action == GLFW_RELEASE)
+    if (key == GLFW_KEY_J && action == GLFW_RELEASE)
         translateZ = false;
 
-    if (key == GLFW_KEY_J && (action == GLFW_PRESS || action == GLFW_REPEAT))
+    if (key == GLFW_KEY_I && (action == GLFW_PRESS || action == GLFW_REPEAT))
         translateZD = true;
-    if (key == GLFW_KEY_J && action == GLFW_RELEASE)
+    if (key == GLFW_KEY_I && action == GLFW_RELEASE)
         translateZD = false;
 
     if (key == GLFW_KEY_U && (action == GLFW_PRESS || action == GLFW_REPEAT))
@@ -314,55 +314,54 @@ int setupShader()
 // A função retorna o identificador do VAO
 int setupGeometry()
 {
-    GLfloat vertices[] = {
-        // Positions          // Colors
-        // Front face
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left
-         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right
-         0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Top-right
-         0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Top-right
-        -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Top-left
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left
+    GLfloat vertices[] = {  
+        // Frente
+        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
 
-        // Back face
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right
-         0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Top-right
-         0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Top-right
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  // Top-left
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left
+        // Atras
+        -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
 
-        // Left face
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Top-right
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Top-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-left
-        -0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Bottom-right
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Top-right
+        // Lado esquerdo
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.0f,
 
-        // Right face
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Top-left
-         0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Top-right
-         0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-         0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-         0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Bottom-left
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  // Top-left
+        // Lado Direito
+         0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  
+         0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  
+         0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  
+         0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  
+         0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  
+         0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  
 
-         // Top face
-         -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Top-left
-          0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Top-right
-          0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-          0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-         -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Bottom-left
-         -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Top-left
+         // Parte de Cima
+         -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 1.0f,
+          0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 1.0f,
+          0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
+          0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
+         -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
+         -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 1.0f,
 
-         // Bottom face
-         -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Top-left
-          0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Top-right
-          0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-          0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  // Bottom-right
-         -0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Bottom-left
-         -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f   // Top-left
+         // Parte de Baixo
+         -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
+          0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
+          0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+          0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+         -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+         -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f
     };
 
     GLuint VBO, VAO;
