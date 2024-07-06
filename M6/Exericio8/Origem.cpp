@@ -99,7 +99,7 @@ int main()
     }
 
     // Criação da janela GLFW
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Ola 3D -- Marcelo Luiz Fontana!", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Ola 3D -- Nicolas Cussioli Raimundo!.", nullptr, nullptr);
     if (!window)
     {
         std::cerr << "Failed to create GLFW window" << std::endl;
