@@ -170,15 +170,15 @@ int main()
         processInput(position2, scale);
 
         // Limpa o buffer de cor
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // cor de fundo
+        glClearColor(0.5f, 1.0f, 0.0f, 0.5f); // cor de fundo
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        float angle = (GLfloat)glfwGetTime() * 50.0f;
+        float angle = (GLfloat)glfwGetTime() * 20.0f;
 
         // Configurações para o primeiro cubo
-        glm::mat4 model1 = glm::mat4(1.0f);
+        glm::mat4 model1 = glm::mat4(0.5f);
         model1 = glm::translate(model1, position1);
-        model1 = glm::rotate(model1, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+        model1 = glm::rotate(model1, glm::radians(angle), glm::vec3(1.0f, 1.0f, 0.0f));
         model1 = glm::translate(model1, glm::vec3(0.75f, 0.0f, 0.0f));
         model1 = glm::scale(model1, scale);
 
@@ -193,10 +193,10 @@ int main()
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // Configurações para o segundo cubo
-        glm::mat4 model2 = glm::mat4(1.0f);
-        model2 = glm::translate(model2, position2);
-        model2 = glm::rotate(model2, glm::radians(-angle), glm::vec3(0.0f, 1.0f, 0.0f));
-        model2 = glm::translate(model2, glm::vec3(-0.75f, 0.0f, 0.0f));
+        glm::mat4 model2 = glm::mat4(0.5f);
+        model2 = glm::translate(model2, position1);
+        model2 = glm::rotate(model2, glm::radians(-angle), glm::vec3(1.0f, 1.0f, 0.0f));
+        model2 = glm::translate(model2, glm::vec3(0.75f, 1.0f, 0.0f));
         model2 = glm::scale(model2, scale);
 
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model2));
